@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f49a052..7fc8b6f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -210,7 +210,7 @@ endif()
+ # QuickJS library
+ #
+ 
+-xoption(QJS_BUILD_LIBC "Build standard library modules as part of the library" OFF)
++xoption(QJS_BUILD_LIBC "Build standard library modules as part of the library" ON)
+ macro(add_qjs_libc_if_needed target)
+     if(NOT QJS_BUILD_LIBC)
+         target_sources(${target} PRIVATE quickjs-libc.c)

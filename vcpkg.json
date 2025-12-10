@@ -1,0 +1,7 @@
+{
+  "dependencies": [
+    "quickjs-ng",
+    "spdlog",
+    "yaml-cpp"
+  ]
+}
