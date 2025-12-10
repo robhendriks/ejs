@@ -17,7 +17,7 @@ namespace qjsx {
     public:
         using ModuleMap = std::unordered_map<std::string, JSModuleDef *>;
 
-        explicit Context(const Runtime &rt);
+        Context(const Runtime &rt, void *userData);
 
         Context(const Context &) = delete;
 
@@ -41,10 +41,16 @@ namespace qjsx {
 
         const ModuleMap &getModules() const;
 
+        template<typename T>
+        T *getUserData() const {
+            return static_cast<T *>(m_userData);
+        }
+
         ~Context();
 
     private:
         ModuleMap m_modules;
         JSContext *m_context;
+        void *m_userData;
     };
 }

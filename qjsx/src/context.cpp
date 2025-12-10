@@ -15,8 +15,9 @@ namespace qjsx {
         return ss.str();
     }
 
-    Context::Context(const Runtime &rt)
-        : m_context(JS_NewContext(rt.m_runtime)) {
+    Context::Context(const Runtime &rt, void *userData)
+        : m_context(JS_NewContext(rt.m_runtime)),
+          m_userData(userData) {
         js_init_module_std(m_context, "std");
         js_init_module_os(m_context, "os");
         js_std_add_helpers(m_context, 0, nullptr);

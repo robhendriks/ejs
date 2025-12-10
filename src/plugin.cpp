@@ -49,10 +49,17 @@ namespace ejs {
             return;
         }
 
+        spdlog::debug("Running main function");
+
         const Value mod = m_context->getModule(m_ns);
         const Value main = mod["main"];
 
         const Value mainVal = main();
+
+        if (mainVal.isException()) {
+            mainVal.printException();
+            return;
+        }
 
         // TODO
     }
@@ -67,9 +74,11 @@ namespace ejs {
         }
 
         // Create JavaScript context
-        m_context = std::make_unique<Context>(m_manager->getRuntime());
+        m_context = std::make_unique<Context>(m_manager->getRuntime(), this);
 
         // Evaluate JavaScript module
+        spdlog::debug("Compiling module {}", m_ns);
+
         const auto evalResult = m_context->evalModule(m_ns);
         if (evalResult.isException()) {
             evalResult.printException();
