@@ -41,16 +41,11 @@ namespace qjsx {
 
         const ModuleMap &getModules() const;
 
-        template<typename T>
-        T *getUserData() const {
-            return static_cast<T *>(m_userData);
-        }
-
         ~Context();
 
     private:
         ModuleMap m_modules;
         JSContext *m_context;
-        void *m_userData;
+        void *m_userData; // maybe generalize using Context<T>?
     };
 }
