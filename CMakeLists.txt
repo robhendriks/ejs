@@ -10,8 +10,8 @@ find_package(spdlog CONFIG REQUIRED)
 add_subdirectory(qjsx)
 
 add_executable(ejs
-        src/ejs.cpp
         src/app.cpp
+        src/ejs.cpp
         src/plugin.cpp
         src/plugin_manager.cpp
 )
